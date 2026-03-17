@@ -2,7 +2,8 @@
 <html>
   <style>
 body {
-    font-family: Trebuchet MS, sans-serif;
+    /* font-family: Trebuchet MS, sans-serif; */
+    font-family: EB Garamond, sans-serif;
     margin: 0;
     background-color: #E7D5BE;
     color: #E7D5BE;
@@ -21,18 +22,23 @@ header {
 /* Nadpisy */
 h1 {
     margin: 0;
-    font-size: 34px;
+    font-size: 60px;
+    color: #919363;
+    text-align: center;
 }
 
 h2 {
+    font-size: 40px;
     color: #614124;
 }
 
 h3 {
+    font-size: 30px;
     color: #614124;
 }
 
 h4 {
+    font-size: 25px;
     color: #614124;
     margin-bottom: 2px;
 }
@@ -75,39 +81,73 @@ footer {
     border-top: 3px solid #614124;
     color: #614124;
 }
+
+hr {
+    width:110px;
+    height:2px;
+    border-width:0;
+    color: #614124;
+    background-color:#614124;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 45%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
 <head>
 <meta charset="UTF-8">
-<title>Srnkovci</title>
+<title>Sovci</title>
 </head>
 <body>
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Gilda+Display:wght@100;400&family=EB+Garamond:wght@400&display=swap" 
+    media="all">
+
     <main>
-      <h2>Anotácia:</h2>
-      <section>
-      Bakalárska práca sa zaoberá skúmaním využitia foundation modelov v oblasti analýzy a spracovania medicínskych dát. Cieľom práce je porovnať rôzne metódy na segmentáciu MRI skenov s využitím foundation modelov, ako aj modelov zameraných na konkrétnu oblasť tela.
-      </section>
+        <h1>MIRIAM & LUKÁŠ</h1>
 
-      <h2>Týždenník</h2>
-      <section>
-      <h3>1. týždeň (16.2 - 22.2)</h3>
-      <div>...</div>
-      </section>
+        <div class="row">
+            <div class="column">
+                <div>
+                <h2>12. septembra 2026,</h2>
+                <h2>Kostol sv. Štefana Uhorského, Bratislava</h2>
+                </div>
+            </div>
+            <div class="column" style="flex:10%"></div>
+            <div class="column">
+                <img src="./images/my.jpg" 
+                style="width: 100%;">
+            </div>
+        </div>
 
-      <section>
-      <h3>2. týždeň (23.2 - 1.3.)</h3>
-      <div>...</div>
-      </section>
+        <h2>Bude svadbaaa</h2>
+        <section>
+        V Abelande
+        </section>
 
-      <h2>Zdroje:</h2>
-      <section>
-      ...
-      </section>
+        <h2>Ako sa obliect</h2>
+        <section>
+        Tepluckooo
+        </section>
+
+        <h2>Ako sa dostat</h2>
+        <section>
+            Lozorno
+        </section>
 
   </main>
 
   <footer>
-    <h4>Kontakt:</h4>
-    <a style="color: inherit" href="mailto:srnka17@uniba.sk">srnka17@uniba.sk</a>
+    <h1 style="color: #614124;margin-bottom: 0;">M&L</h1>
+    <hr>
+    <h3 style="margin-top: 0;">12.9.2026</h3>
   </footer>
 
 </body>
