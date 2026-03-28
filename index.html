@@ -65,6 +65,7 @@ section {
     border-left: 6px solid #614124;
     box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
+    font-size: large;
 }
 
 /* jemný hover efekt */
@@ -108,6 +109,37 @@ hr {
 <link rel="icon" type="image/x-icon" href="./images/my.ico">
 </head>
 <body>
+    <script>
+// Set the date we're counting down to
+var countDownDate = new Date("Sep 12, 2026 13:30:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
+
     <link rel="stylesheet" 
     href="https://fonts.googleapis.com/css2?family=Gilda+Display:wght@100;400&family=EB+Garamond:wght@400&display=swap" 
     media="all">
@@ -118,9 +150,9 @@ hr {
         <div class="row">
             <div class="column">
                 <div style="text-align: center;">
-                <h2>12. septembra 2026</h2>
-                <h2>o 13:30</h2>
-                <h2>v Kostole sv. Štefana Uhorského, Bratislava</h2>
+                    <h2>12. septembra 2026</h2>
+                    <h2>o 13:30</h2>
+                    <h2>v Kostole sv. Štefana Uhorského, Bratislava</h2>
                 </div>
             </div>
             <div class="column" style="flex:10%"></div>
@@ -129,6 +161,8 @@ hr {
                 style="width: 100%;">
             </div>
         </div>
+
+        <h2>Ostáva: <span id="demo"></span></h2>
 
         <h2>Miesto obradu</h2>
         <section>
@@ -139,27 +173,33 @@ hr {
         
         <h2>Miesto hostiny</h2>
         <section>
+            <div>
+                Priestory svadobnej hostiny sa nesú v prírodnom duchu. <br>
+                Hostina bude prebiehať v polootvorených priestoroch a preto vás prosíme, aby ste si doniesli niečo teplé na seba.<br>
+                Pri výbere obuvy myslite na to, že podlaha môže mať nerovnosti a cestou ku stolu sa vám môže mierne zašpiniť.
+            </div>
+        </section>
+        <section style="margin-top: 5px;">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2093.3545751107126!2d17.079797499999998!3d48.32276780000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476cec83ced98275%3A0x74a239686d9b33a7!2sAbeland%20-%20dedinka%20remesiel!5e1!3m2!1ssk!2ssk!4v1773816127320!5m2!1ssk!2ssk" 
             width="100%" height="450" style="border:0;border-radius: 1em;" allowfullscreen="" 
             loading="lazy" referrerpolicy="no-referrer-when-downgrade">Načítava sa…</iframe>
         </section>
         
-        <div style="display: flex; align-items: center;margin-bottom: 0px;">
         <h2>Formulár</h2>
-        <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLScGsEX0gln1Ckq9swG9wS2f8v-d2NGgJEvMfr_o3LPLpHf-Qg/viewform?usp=header" 
-        target="_blank" style="color:#614124;margin-left: 5px;">otvoriť v novej karte</a>
-        </div>
-
-        <section style="margin-top: 0px;">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScGsEX0gln1Ckq9swG9wS2f8v-d2NGgJEvMfr_o3LPLpHf-Qg/viewform?embedded=true" 
-            width="100%" height="450" frameborder="0" marginheight="0" 
-            marginwidth="0">Načítava sa…</iframe>
-            
+        <section >
+            <div >V prípade potreby môžete formulár <a class="btn btn-success" href="https://docs.google.com/forms/d/e/1FAIpQLSfCVzLSfZwOydE6B_BOklDsTeUSsdDq555t5UgdqduSX7IlRQ/viewform?usp=dialog" 
+        target="_blank" style="color:#E7D5BE;">otvoriť v novej karte<img src="images/popup-link-icon-beige.png" style="height: 10px;padding-bottom: 3px;margin-left: 1px;"></a>.</div>
         </section>
 
-        <h2>Ako sa obliect</h2>
+        <section style="margin-top: 5px;">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfCVzLSfZwOydE6B_BOklDsTeUSsdDq555t5UgdqduSX7IlRQ/viewform?embedded=true" 
+        width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Načítava sa…</iframe>
+        </section>
+
+        <h2>Dary</h2>
         <section>
-        Tepluckooo
+            Pokiaľ nás chcete potešiť darom, radi prijímeme finančné dary, za ktoré si môžeme kúpiť, čo budeme potrebovať a oceníme originálne a kreatívne dary od srdca. <br>
+            Najväčším darom pre nás bude však to, že sa zúčastníte a oslávite s nami náš veľký deň.
         </section>
 
   </main>
