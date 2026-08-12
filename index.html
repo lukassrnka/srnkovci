@@ -106,6 +106,105 @@ hr {
   justify-content: center;
   align-items: center;
 }
+
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.galeria img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.galeria img:hover {
+    transform: scale(1.03);
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox img {
+    max-width: 85%;
+    max-height: 85%;
+    border-radius: 8px;
+}
+
+/* Zavrieť */
+.zatvor {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 45px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+/* Šípky */
+.sipka {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 55px;
+    cursor: pointer;
+    user-select: none;
+    padding: 20px;
+    z-index: 1002;
+}
+
+.lava {
+    left: 10px;
+}
+
+.prava {
+    right: 10px;
+}
+
+.sipka:hover,
+.zatvor:hover {
+    opacity: 0.7;
+}
+
+/* Mobil */
+@media (max-width: 700px) {
+    .galeria {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .galeria img {
+        height: 150px;
+    }
+
+    .sipka {
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 450px) {
+    .galeria {
+        grid-template-columns: 1fr;
+    }
+}
 </style>
 
 <head>
@@ -114,34 +213,114 @@ hr {
 <link rel="icon" type="image/x-icon" href="./images/my.ico">
 </head>
 <body>
-    <script>
+<script>
+const fotky = [
+        "images/foto1.jpg",
+        "images/foto2.jpg",
+        "images/foto3.jpg",
+        "images/foto4.jpg",
+        "images/foto5.jpg",
+        "images/foto6.jpg"
+    ];
+
+    let aktualna = 0;
+
+
+    function otvor(index) {
+        aktualna = index;
+
+        document.getElementById("velkaFoto").src = fotky[aktualna];
+
+        document.getElementById("lightbox").style.display = "flex";
+    }
+
+
+    function zatvor(event) {
+        event.stopPropagation();
+
+        document.getElementById("lightbox").style.display = "none";
+    }
+
+
+    function dalsia(event) {
+        event.stopPropagation();
+
+        aktualna++;
+
+        // Po poslednej fotke pokračuje od prvej
+        if (aktualna >= fotky.length) {
+            aktualna = 0;
+        }
+
+        document.getElementById("velkaFoto").src = fotky[aktualna];
+    }
+
+
+    function predosla(event) {
+        event.stopPropagation();
+
+        aktualna--;
+
+        // Z prvej fotky skočí na poslednú
+        if (aktualna < 0) {
+            aktualna = fotky.length - 1;
+        }
+
+        document.getElementById("velkaFoto").src = fotky[aktualna];
+    }
+
+
+    // Ovládanie klávesnicou
+    document.addEventListener("keydown", function(event) {
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        if (lightbox.style.display !== "flex") {
+            return;
+        }
+
+        if (event.key === "ArrowRight") {
+            dalsia(event);
+        }
+
+        if (event.key === "ArrowLeft") {
+            predosla(event);
+        }
+
+        if (event.key === "Escape") {
+            lightbox.style.display = "none";
+        }
+
+    });
+
 // Set the date we're counting down to
 var countDownDate = new Date("Sep 12, 2026 13:30:00").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
 
-  // Get today's date and time
-  var now = new Date().getTime();
+// Get today's date and time
+var now = new Date().getTime();
 
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+// Display the result in the element with id="demo"
+document.getElementById("demo").innerHTML = days + "d " + hours + "h "
++ minutes + "m " + seconds + "s ";
 
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
+// If the count down is finished, write some text
+if (distance < 0) {
+clearInterval(x);
+document.getElementById("demo").innerHTML = "EXPIRED";
+}
 }, 1000);
 </script>
 
@@ -168,6 +347,29 @@ var x = setInterval(function() {
         </div>
 
         <h2>Ostáva: <span id="demo"></span></h2>
+
+        <div class="lightbox" id="lightbox" onclick="zatvor(event)">
+
+            <span class="zatvor" onclick="zatvor(event)">&times;</span>
+
+            <span class="sipka lava" onclick="predosla(event)">&#10094;</span>
+
+            <img id="velkaFoto" src="" onclick="event.stopPropagation()">
+
+            <span class="sipka prava" onclick="dalsia(event)">&#10095;</span>
+
+        </div>
+
+        <section>
+            <div class="galeria">
+                <img src="images/foto1.jpg" onclick="otvor(0)">
+                <img src="images/foto2.jpg" onclick="otvor(1)">
+                <img src="images/foto3.jpg" onclick="otvor(2)">
+                <img src="images/foto4.jpg" onclick="otvor(3)">
+                <img src="images/foto5.jpg" onclick="otvor(4)">
+                <img src="images/foto6.jpg" onclick="otvor(5)">
+            </div>
+        </section>
 
         <h2>Miesto obradu</h2>
         <section>
@@ -207,14 +409,40 @@ var x = setInterval(function() {
             Najväčším darom pre nás bude však to, že sa zúčastníte a oslávite s nami náš veľký deň.
         </section>
 
+        <h2>Parkovanie</h2>
+        <section>
+            <div>
+                Kapucínsky kostol nemá svoje parkovisko a preto treba v prípade dopravy autom zaparkovať na jednom z neďalekých parkovísk.<br>
+                Možnosti sú nasledovné:
+            </div>
+        </section>
+        <section style="margin-top: 5px;">
+            Platené parkovisko Centrum (1,50€ za 30 minút<span style="font-size: 30px;">*</span>)
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d458.45859834985333!2d17.104417018798976!3d48.146840747327445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c899630f984a1%3A0xdaeea05bc6cf8ba1!2sParkovisko%20CENTRUM%20-%20Ve%C4%BEk%C3%BD%20Kostol!5e1!3m2!1ssk!2ssk!4v1786566751817!5m2!1ssk!2ssk" 
+            width="100%" height="450" style="border:0;border-radius: 1em;" allowfullscreen="" 
+            loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Načítava sa…</iframe>
+        </section>
+        <section style="margin-top: 5px;">
+            Parkovanie PAAS na uliciach Pilárikova, Zochova, Kozia... (1€ za hodinu<span style="font-size: 30px;">*</span>)
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d551.7909146894834!2d17.103372308157386!3d48.14567418713622!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476c895c680fff27%3A0xf6a841e72f554964!2sPil%C3%A1rikova%2C%20Bratislava!5e1!3m2!1ssk!2ssk!4v1786567435572!5m2!1ssk!2ssk" 
+            width="100%" height="450" style="border:0;border-radius: 1em;" allowfullscreen="" 
+            loading="lazy" referrerpolicy="strict-origin-when-cross-origin">Načítava sa…</iframe>
+        </section>
+        <section style="margin-top: 5px;">
+            Iná alternatíva, ktorú by sa vám podarilo nájsť <br>
+            <span style="font-size: 20px;">*Ceny parkovísk môžu byť aktualizované a pred definitívnym výberom ich odporúčame overiť</span>
+        </section>
+
   </main>
 
   <footer>
     <h2 style="color: #614124;margin-bottom: 0;">M&L</h2>
     <hr>
     <h4 style="margin-top: 0;">12.9.2026</h4>
-    <p>Obrázky od <a class="btn btn-success" href="https://www.instagram.com/hannahjavadi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
+    <p style="margin-bottom:0;">Obrázky od <a class="btn btn-success" href="https://www.instagram.com/hannahjavadi?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" 
         target="_blank" style="color:#614124">@hannahjavadi</a></p>
+    <p style="margin-top:0;">Fotky od najšikovnejšej <a class="btn btn-success" href="https://www.instagram.com/milka.hidveghy/?utm_source=ig_web_button_share_sheet" 
+        target="_blank" style="color:#614124">@milka.hidveghy</a></p>
   </footer>
 
 </body>
