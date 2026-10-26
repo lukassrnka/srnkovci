@@ -304,7 +304,7 @@ var x = setInterval(function() {
 var now = new Date().getTime();
 
 // Find the distance between now and the count down date
-var distance = countDownDate - now;
+var distance = now = countDownDate;
 
 // Time calculations for days, hours, minutes and seconds
 var days = Math.floor(distance / (1000 * 60 * 60 * 24));
@@ -346,7 +346,7 @@ document.getElementById("demo").innerHTML = "EXPIRED";
             </div>
         </div>
 
-        <h2>Ostáva: <span id="demo"></span></h2>
+        <h2>Už sme svoji: <span id="demo"></span></h2>
 
         <div class="lightbox" id="lightbox" onclick="zatvor(event)">
 
